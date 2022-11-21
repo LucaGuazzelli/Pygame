@@ -2,6 +2,8 @@
 # ----- Importa e inicia pacotes
 import pygame
 
+from Ball import bola, jogador, adversario, cor  
+
 pygame.init()
 
 # ----- Gera tela principal
@@ -20,7 +22,10 @@ while game:
             game = False
 
     # ----- Gera saídas
-    window.fill((228, 228, 228))  
+    window.fill((228, 228, 228))
+
+    # Desenho da Bola 
+     pygame.draw.rect(window, cor, jogador)  
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
