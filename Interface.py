@@ -25,7 +25,9 @@ while game:
     window.fill((228, 228, 228))
 
     # Desenho da Bola 
-     pygame.draw.rect(window, cor, jogador)  
+    pygame.draw.rect(window, cor, jogador) 
+    pygame.draw.rect(window,cor,adversario)
+    pygame.draw.ellipse(window,cor, bola)
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
