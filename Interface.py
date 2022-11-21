@@ -29,6 +29,10 @@ while game:
     pygame.draw.rect(window,cor,adversario)
     pygame.draw.ellipse(window,cor, bola)
 
+    # vel da bola 
+    Vel_bola_x = 7
+    vel_bola_y = 7
+    
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
 
