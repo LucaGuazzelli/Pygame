@@ -24,7 +24,7 @@ while game:
     # ----- Gera saídas
     window.fill((228, 228, 228))
 
-    # Desenho da Bola 
+    # Desenho da Bola E OUTROS 
     pygame.draw.rect(window, cor, jogador) 
     pygame.draw.rect(window,cor,adversario)
     pygame.draw.ellipse(window,cor, bola)
