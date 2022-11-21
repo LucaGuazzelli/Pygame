@@ -20,7 +20,7 @@ while game:
             game = False
 
     # ----- Gera saídas
-    window.fill((0, 0, 128))  # Preenche com a cor branca
+    window.fill((0, 0, 128))  
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
