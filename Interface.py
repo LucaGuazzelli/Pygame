@@ -2,7 +2,7 @@
 # ----- Importa e inicia pacotes
 import pygame
 
-from Ball import bola, jogador, adversario, cor  
+from Ball import bola, jogador, adversario, cor, screen_height, screen_width  
 
 pygame.init()
 
@@ -27,6 +27,12 @@ while game:
 
     bola.x = bola.x + Vel_bola_x
     bola.y = bola.y + vel_bola_y
+
+    if bola_topo <= 0 or bola_baixo >= screen_height:
+        vel_bola_y = vel_bola_y * -1 
+    if bola.left <= 0 or bola.right >= screen_width:
+        Vel_bola_x = Vel_bola_x * -1
+
 
     # ----- Gera saídas
     window.fill((228, 228, 228))
