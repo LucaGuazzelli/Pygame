@@ -16,6 +16,7 @@ game = True
     # vel da bola 
 Vel_bola_x = 1
 vel_bola_y = 1
+vel_jogador = 0 
 
 # ===== Loop principal =====
 while game:
@@ -24,12 +25,32 @@ while game:
         # ----- Verifica consequências
         if event.type == pygame.QUIT or event.type == pygame.KEYUP:
             game = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                vel_jogador = vel_jogador + 7
+            if event.key == pygame.K_UP:
+                vel_jogador = vel_jogador - 7
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_DOWN:
+                vel_jogador = vel_jogador - 7
+            if event.key == pygame.K_UP:
+                vel_jogador = vel_jogador + 7
+                
+                
 
     bola.x = bola.x + Vel_bola_x
     bola.y = bola.y + vel_bola_y
+    jogador_y = vel_jogador + jogador_y
 
 
-    if bola_topo <= 0 or bola_baixo >= screen_height:
+
+
+    if jogador.top <= 0:
+        jogador.top = 0
+    if jogador.bottom >= screen_height:
+        jogador.bottom = screen_height
+
+    if bola.top  <= 0 or bola.bottom >= screen_height:
         vel_bola_y = vel_bola_y * -1 
     if bola.left <= 0 or bola.right >= screen_width:
         Vel_bola_x = Vel_bola_x * -1
