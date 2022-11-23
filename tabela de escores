@@ -2,4 +2,9 @@ import pygame
 pontuação_1 = 0
 pontuação_2 = 0
 fonte_jogo = pygame.font.Font("freesansbold.ttf", 32)
+#visualmente ==== juntar depois à interface
+texto_jogador = fonte_jogo.render(f"{pontuação_1}", False, cor)
+
+
+
 
