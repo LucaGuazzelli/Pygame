@@ -15,8 +15,8 @@ game = True
 
     # vel da bola 
 
-Vel_bola_x = 1
-vel_bola_y = 1
+Vel_bola_x = 1 * random.choice((1,-1))
+vel_bola_y = 1 * random.choice((1,-1))
 vel_jogador = 0 
 vel_adversario = 7
 
@@ -84,6 +84,7 @@ while game:
     pygame.draw.rect(window, cor, jogador) 
     pygame.draw.rect(window,cor,adversario)
     pygame.draw.ellipse(window,cor, bola)
+    pygame.draw.aaline(window,cor,(screen_width/2,0), screen_width/2,screen_height)
 
 
 
