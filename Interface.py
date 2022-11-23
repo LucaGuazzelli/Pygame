@@ -19,6 +19,9 @@ Vel_bola_x = 1 * random.choice((1,-1))
 vel_bola_y = 1 * random.choice((1,-1))
 vel_jogador = 0 
 vel_adversario = 7
+jogador_y = 0
+vel_bola_y = 0
+Vel_bola_x = 0 
 
 def bola_restart():
     bola_centro = (screen_width/2, screen_height/2)
@@ -30,7 +33,7 @@ while game:
     # ----- Trata eventos
     for event in pygame.event.get():
         # ----- Verifica consequências
-        if event.type == pygame.QUIT or event.type == pygame.KEYUP:
+        if event.type == pygame.QUIT:
             game = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
@@ -68,8 +71,8 @@ while game:
     if bola.left <= 0 or bola.right >= screen_width:
         bola_restart()
     
-    if bola.collidedict(jogador) or bola.collidedict(adversario):
-        Vel_bola_x = Vel_bola_x + - 1
+    if bola.colliderect(jogador) or bola.colliderect(adversario):
+        Vel_bola_x = Vel_bola_x  - 1
 
     # ----- Gera saídas
     window.fill((228, 228, 228))
@@ -78,12 +81,11 @@ while game:
     pygame.draw.rect(window, cor, jogador) 
     pygame.draw.rect(window,cor,adversario)
     pygame.draw.ellipse(window,cor, bola)
-    pygame.draw.aaline(window,cor,(screen_width/2,0), screen_width/2,screen_height)
-
-
+    #pygame.draw.aaline(window,cor,(screen_width/2,0), screen_width/2,screen_height)
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
+
 
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
