@@ -13,6 +13,10 @@ pygame.display.set_caption('Bate volta - Luca, Rafa e PH')
 # ----- Inicia estruturas de dados
 game = True
 
+    # vel da bola 
+Vel_bola_x = 1
+vel_bola_y = 1
+
 # ===== Loop principal =====
 while game:
     # ----- Trata eventos
@@ -20,6 +24,9 @@ while game:
         # ----- Verifica consequências
         if event.type == pygame.QUIT or event.type == pygame.KEYUP:
             game = False
+
+    bola.x = bola.x + Vel_bola_x
+    bola.y = bola.y + vel_bola_y
 
     # ----- Gera saídas
     window.fill((228, 228, 228))
@@ -29,10 +36,8 @@ while game:
     pygame.draw.rect(window,cor,adversario)
     pygame.draw.ellipse(window,cor, bola)
 
-    # vel da bola 
-    Vel_bola_x = 7
-    vel_bola_y = 7
-    
+
+
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
 
