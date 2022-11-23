@@ -28,10 +28,15 @@ while game:
     bola.x = bola.x + Vel_bola_x
     bola.y = bola.y + vel_bola_y
 
+
     if bola_topo <= 0 or bola_baixo >= screen_height:
         vel_bola_y = vel_bola_y * -1 
     if bola.left <= 0 or bola.right >= screen_width:
         Vel_bola_x = Vel_bola_x * -1
+    
+
+    if bola.collidedict(jogador) or bola.collidedict(adversario):
+        Vel_bola_x = Vel_bola_x + - 1
 
 
     # ----- Gera saídas
