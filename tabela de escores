@@ -1,0 +1,5 @@
+import pygame
+pontuação_1 = 0
+pontuação_2 = 0
+fonte_jogo = pygame.font.Font("freesansbold.ttf", 32)
+
