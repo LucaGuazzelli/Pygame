@@ -43,12 +43,9 @@ while game:
             if event.key == pygame.K_UP:
                 vel_jogador = vel_jogador + 7
                 
-                
-
     bola.x = bola.x + Vel_bola_x
     bola.y = bola.y + vel_bola_y
     jogador_y = vel_jogador + jogador_y
-
 
     if adversario.top < bola.y:
         bola.top = bola.top + vel_adversario
@@ -71,11 +68,8 @@ while game:
     if bola.left <= 0 or bola.right >= screen_width:
         bola_restart()
     
-
-
     if bola.collidedict(jogador) or bola.collidedict(adversario):
         Vel_bola_x = Vel_bola_x + - 1
-
 
     # ----- Gera saídas
     window.fill((228, 228, 228))
