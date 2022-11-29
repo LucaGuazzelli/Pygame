@@ -3,6 +3,10 @@
 
 import pygame, sys, random 
 
+Jogador_pontos = 0 
+Adversario_pontos = 0 
+fonte = pygame.font.SysFont("Free Sans", 32)
+
 def Bola_animacao():
 	global Bola_vel_x, Bola_vel_y
 	
@@ -11,8 +15,12 @@ def Bola_animacao():
 
 	if Bola .top <= 0 or Bola .bottom >= Tela_altura:
 		Bola_vel_y *= -1
-	if Bola.left <= 0 or Bola.right >= Tela_largura:
+	if Bola.left <= 0:
 		bola_start()
+		Jogador_pontos += 1
+	if Bola.right >= Tela_largura:
+		bola_start()
+		Adversario_pontos += 1
 	if Bola.colliderect(Jogador) or Bola.colliderect(Adversario):
 		Bola_vel_x *= -1
 
@@ -51,6 +59,7 @@ Tela = pygame.display.set_mode((Tela_largura,Tela_altura))
 pygame.display.set_caption('Jogo.Pygame - Luca, PH, Rafa')
 
 
+
 Cor = (200,200,200)
 bg_color = pygame.Color('grey12')
 
@@ -64,8 +73,18 @@ Bola_vel_x = 7 * random.choice((1,-1))
 Bola_vel_y = 7 * random.choice((1,-1))
 jogador_Vel = 0
 Adversario_vel = 7
+Bola_mex = False 
+Tempo_pontos = True 
 
+#som 
 
+Som_batida = pygame.mixer.Sound("plob.ogg")
+som_pontos = pygame.mixer.Sound("Score.ogg")
+player_text = fonte.render(f'{Jogador_pontos}',False,Cor)
+Tela.blit(player_text,(660,470))
+
+opponent_text = fonte.render(f'{Adversario_pontos}',False,Cor)
+Tela.blit(opponent_text,(600,470))
 
 while True:
 	for event in pygame.event.get():
@@ -83,6 +102,16 @@ while True:
 				if event.key == pygame.K_DOWN:
 					jogador_Vel -= 7
 				
+					
+	if Tempo_pontos:
+		bola_start()
+	
+		
+	player_text = fonte.render(f'{Jogador_pontos}',False,Cor)
+	Tela.blit(player_text,(660,470))
+	opponent_text = fonte.render(f'{Adversario_pontos}',False,Cor)
+	Tela.blit(opponent_text,(600,470))
+	
 	Bola_animacao()
 	player_animation()
 	adversario()
