@@ -17,6 +17,15 @@ def Bola_animacao():
 	if Bola.colliderect(Jogador) or Bola.colliderect(Adversario):
 		Bola_vel_x *= -1
 
+def player_animation():
+	Jogador.y += jogador_Vel
+
+	if Jogador.top <= 0:
+		Jogador.top = 0
+	if Jogador.bottom >= Tela_altura:
+		Jogador.bottom = Tela_altura 
+
+
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -38,14 +47,30 @@ Adversario = pygame.Rect(10, Tela_altura / 2 - 70, 10,140)
 
 Bola_vel_x = 7
 Bola_vel_y = 7
+jogador_Vel = 0
+Adversario_vel = 7
+
+
+
 
 while True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			sys.exit()
-	
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_UP:
+					jogador_Vel -= 7
+			if event.key == pygame.K_DOWN:
+					jogador_Vel += 7
+		if event.type == pygame.KEYUP:
+				if event.key == pygame.K_UP:
+					jogador_Vel += 7
+				if event.key == pygame.K_DOWN:
+					jogador_Vel -= 7
+				
 	Bola_animacao()
+	player_animation()
 
 	Tela.fill('grey12')
 	pygame.draw.rect(Tela, Cor, Jogador)
