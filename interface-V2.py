@@ -1,6 +1,5 @@
 
 
-
 import pygame, sys, random
 pygame.init() 
 
@@ -105,7 +104,7 @@ Adversario = pygame.Rect(10, Tela_altura / 2 - 70, 10,140)
 Bola_vel_x = 7 * random.choice((1,-1))
 Bola_vel_y = 7 * random.choice((1,-1))
 jogador_Vel = 0
-Adversario_vel = 7
+Adversario_vel = 10
 Bola_mex = False 
 
 
