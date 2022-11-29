@@ -8,6 +8,8 @@ Jogador_pontos = 0
 Adversario_pontos = 0 
 fonte = pygame.font.SysFont("Free Sans Bold", 32)
 
+sons = {'som1': 'mixkit-game-ball-tap-2073.wav'}
+
 def Bola_animacao():
 	global Bola_vel_x, Bola_vel_y
 	
@@ -15,7 +17,7 @@ def Bola_animacao():
 	Bola .y += Bola_vel_y
 
 	if Bola .top <= 0 or Bola .bottom >= Tela_altura:
-		Bola_vel_y *= -19
+		Bola_vel_y *= -1
 	if Bola.left <= 0:
 		bola_start()
 		Jogador_pontos += 1
@@ -24,6 +26,7 @@ def Bola_animacao():
 		Adversario_pontos += 1
 	if Bola.colliderect(Jogador) or Bola.colliderect(Adversario):
 		Bola_vel_x *= -1
+		play_sound = (sons['som1'])
 
 def player_animation():
 	Jogador.y += jogador_Vel
@@ -77,10 +80,7 @@ Adversario_vel = 7
 Bola_mex = False 
 Tempo_pontos = True 
 
-#som 
 
-Som_batida = pygame.mixer.Sound("plob.ogg")
-som_pontos = pygame.mixer.Sound("Score.ogg")
 player_text = fonte.render(f'{Jogador_pontos}',False,Cor)
 Tela.blit(player_text,(660,470))
 
@@ -104,8 +104,8 @@ while True:
 					jogador_Vel -= 7
 				
 					
-		if Tempo_pontos:
-			bola_start()
+	if Tempo_pontos:
+		bola_start()
 	
 		
 	player_text = fonte.render(f'{Jogador_pontos}',False,Cor)
