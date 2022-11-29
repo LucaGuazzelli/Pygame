@@ -1,11 +1,12 @@
 
 
 
-import pygame, sys, random 
+import pygame, sys, random
+pygame.init() 
 
 Jogador_pontos = 0 
 Adversario_pontos = 0 
-fonte = pygame.font.SysFont("Free Sans", 32)
+fonte = pygame.font.SysFont("Free Sans Bold", 32)
 
 def Bola_animacao():
 	global Bola_vel_x, Bola_vel_y
@@ -14,7 +15,7 @@ def Bola_animacao():
 	Bola .y += Bola_vel_y
 
 	if Bola .top <= 0 or Bola .bottom >= Tela_altura:
-		Bola_vel_y *= -1
+		Bola_vel_y *= -19
 	if Bola.left <= 0:
 		bola_start()
 		Jogador_pontos += 1
@@ -103,8 +104,8 @@ while True:
 					jogador_Vel -= 7
 				
 					
-	if Tempo_pontos:
-		bola_start()
+		if Tempo_pontos:
+			bola_start()
 	
 		
 	player_text = fonte.render(f'{Jogador_pontos}',False,Cor)
