@@ -4,6 +4,8 @@
 import pygame, sys, random
 pygame.init() 
 
+Tempo_pontos = True
+
 Jogador_pontos = 0 
 Adversario_pontos = 0 
 fonte = pygame.font.SysFont("Free Sans Bold", 32)
@@ -15,7 +17,7 @@ def play_sound(tipo_de_som):
 	pygame.mixer.music.play()
 
 def Bola_animacao():
-	global Bola_vel_x, Bola_vel_y
+	global Bola_vel_x, Bola_vel_y,Tempo_pontos,Adversario_pontos, Jogador_pontos
 	
 	Bola.x += Bola_vel_x
 	Bola.y += Bola_vel_y
@@ -34,7 +36,7 @@ def Bola_animacao():
 			Bola_vel_x *= -1	
 		elif abs(Bola.bottom - Jogador.top) < 10 or abs(Bola.top - Jogador.bottom) < 10 :
 			Bola_vel_y *= -1
-		play_sound(sons['som1'])	
+		#play_sound(sons['som1'])	
 
 	if Bola.colliderect(Adversario):
 		if abs(Bola.left - Adversario.right) < 10 or abs(Bola.right - Jogador.left) < 10:
@@ -78,7 +80,7 @@ def bola_start():
 		Tela.blit(number_one,(Tela_largura/2 - 10, Tela_altura/2 + 20))
 
 	if tempo - Tempo_pontos < 2100:
-		ball_speed_y, ball_speed_x = 0,0
+		Bola_vel_x, Bola_vel_y = 0,0
 	else:
 		Bola_vel_x = 7 * random.choice((1,-1))
 		Bola_vel_y = 7 * random.choice((1,-1))
@@ -92,11 +94,8 @@ Tela_altura = 500
 Tela = pygame.display.set_mode((Tela_largura,Tela_altura))
 pygame.display.set_caption('Jogo.Pygame - Luca, PH, Rafa')
 
-
-
 Cor = (200,200,200)
 bg_color = pygame.Color('grey12')
-
 
 
 Bola  = pygame.Rect(Tela_largura / 2 - 15, Tela_altura / 2 - 15, 30, 30)
@@ -108,7 +107,6 @@ Bola_vel_y = 7 * random.choice((1,-1))
 jogador_Vel = 0
 Adversario_vel = 7
 Bola_mex = False 
-Tempo_pontos = True 
 
 
 while True:
@@ -128,20 +126,10 @@ while True:
 					jogador_Vel -= 7
 				
 					
-	
 		
-	player_text = fonte.render(f'{Jogador_pontos}',False,Cor)
-	Tela.blit(player_text,(66,47))
-
-	opponent_text = fonte.render(f'{Adversario_pontos}',False,Cor)
-	Tela.blit(opponent_text,(66,47))
-	
 	Bola_animacao()
 	player_animation()
 	adversario()
-
-	if Tempo_pontos:
-		bola_start()
 
 	Tela.fill('grey12')
 	pygame.draw.rect(Tela, Cor, Jogador)
@@ -150,6 +138,14 @@ while True:
 	pygame.draw.aaline(Tela, Cor, (Tela_largura / 2, 0),(Tela_largura / 2, Tela_altura))
 
 
+	if Tempo_pontos:
+		bola_start()
+	
+	player_text = fonte.render(f'{Jogador_pontos}',False,Cor)
+	Tela.blit(player_text,(1000,47))
+
+	opponent_text = fonte.render(f'{Adversario_pontos}',False,Cor)
+	Tela.blit(opponent_text,(67,47))
 
 	pygame.display.flip()
 	clock.tick(60)
