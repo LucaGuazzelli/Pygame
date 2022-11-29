@@ -25,6 +25,17 @@ def player_animation():
 	if Jogador.bottom >= Tela_altura:
 		Jogador.bottom = Tela_altura 
 
+def adversario():
+	if Adversario.top < Bola.y:
+		Adversario.y += Adversario_vel
+	if Adversario.bottom > Bola.y:
+		Adversario.y -= Adversario_vel
+
+	if Adversario.top <= 0:
+		adversario.top = 0
+	if Adversario.bottom >= Tela_altura:
+		Adversario.bottom = Tela_altura
+
 
 
 pygame.init()
@@ -71,6 +82,7 @@ while True:
 				
 	Bola_animacao()
 	player_animation()
+	adversario()
 
 	Tela.fill('grey12')
 	pygame.draw.rect(Tela, Cor, Jogador)
