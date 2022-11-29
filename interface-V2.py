@@ -1,7 +1,7 @@
 
 
 
-import pygame, sys
+import pygame, sys, random 
 
 def Bola_animacao():
 	global Bola_vel_x, Bola_vel_y
@@ -11,9 +11,8 @@ def Bola_animacao():
 
 	if Bola .top <= 0 or Bola .bottom >= Tela_altura:
 		Bola_vel_y *= -1
-	if Bola .left <= 0 or Bola .right >= Tela_largura:
-		Bola_vel_x *= -1
-
+	if Bola.left <= 0 or Bola.right >= Tela_largura:
+		bola_start()
 	if Bola.colliderect(Jogador) or Bola.colliderect(Adversario):
 		Bola_vel_x *= -1
 
@@ -36,7 +35,12 @@ def adversario():
 	if Adversario.bottom >= Tela_altura:
 		Adversario.bottom = Tela_altura
 
+def bola_start():
+	global Bola_vel_x, Bola_vel_y
 
+	Bola.center = (Tela_largura/2, Tela_altura/2)
+	Bola_vel_y *= random.choice((1,-1))
+	Bola_vel_x *= random.choice((1,-1))
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -56,11 +60,10 @@ Bola  = pygame.Rect(Tela_largura / 2 - 15, Tela_altura / 2 - 15, 30, 30)
 Jogador = pygame.Rect(Tela_largura - 20, Tela_altura / 2 - 70, 10,140)
 Adversario = pygame.Rect(10, Tela_altura / 2 - 70, 10,140)
 
-Bola_vel_x = 7
-Bola_vel_y = 7
+Bola_vel_x = 7 * random.choice((1,-1))
+Bola_vel_y = 7 * random.choice((1,-1))
 jogador_Vel = 0
 Adversario_vel = 7
-
 
 
 
