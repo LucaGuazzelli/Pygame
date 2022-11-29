@@ -15,10 +15,10 @@ def play_sound(tipo_de_som):
 	pygame.mixer.music.play()
 
 def Bola_animacao():
-	global Bola_vel_x, Bola_vel_y
+	global Bola_vel_x, Bola_vel_y, Jogador_pontos, Adversario_pontos
 	
-	Bola .x += Bola_vel_x
-	Bola .y += Bola_vel_y
+	Bola.x += Bola_vel_x
+	Bola.y += Bola_vel_y
 
 	if Bola.top <= 0 or Bola.bottom >= Tela_altura:
 		Bola_vel_y *= -1
@@ -103,8 +103,6 @@ while True:
 					jogador_Vel -= 7
 				
 					
-	if Tempo_pontos:
-		bola_start()
 	
 		
 	player_text = fonte.render(f'{Jogador_pontos}',False,Cor)
@@ -117,11 +115,16 @@ while True:
 	player_animation()
 	adversario()
 
+	if Tempo_pontos:
+		bola_start()
+
 	Tela.fill('grey12')
 	pygame.draw.rect(Tela, Cor, Jogador)
 	pygame.draw.rect(Tela, Cor, Adversario)
 	pygame.draw.ellipse(Tela, Cor, Bola )
 	pygame.draw.aaline(Tela, Cor, (Tela_largura / 2, 0),(Tela_largura / 2, Tela_altura))
+
+
 
 	pygame.display.flip()
 	clock.tick(60)
