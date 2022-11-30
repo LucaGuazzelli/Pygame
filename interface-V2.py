@@ -104,11 +104,15 @@ Adversario = pygame.Rect(10, Tela_altura / 2 - 70, 10,140)
 Bola_vel_x = 7 * random.choice((1,-1))
 Bola_vel_y = 7 * random.choice((1,-1))
 jogador_Vel = 0
-Adversario_vel = 10
+Adversario_vel = 7
 Bola_mex = False 
 
 
+
+
+
 while True:
+	jogo_start = False 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit()
@@ -123,6 +127,8 @@ while True:
 					jogador_Vel += 7
 				if event.key == pygame.K_DOWN:
 					jogador_Vel -= 7
+		if Jogador_pontos > 5 or Adversario_pontos > 5:
+			pygame.quit()
 				
 					
 		
