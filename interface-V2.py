@@ -1,6 +1,7 @@
 
 
 import pygame, sys, random
+from pygame.locals import *
 pygame.init() 
 
 Tempo_pontos = True
@@ -10,6 +11,8 @@ Adversario_pontos = 0
 fonte = pygame.font.SysFont("Free Sans Bold", 32)
 
 sons = {'som1': 'mixkit-game-ball-tap-2073.wav'}
+
+tela_inicio = pygame.image.load('assets/tela1.jpeg')
 
 def play_sound(tipo_de_som):
 	pygame.mixer.music.load(tipo_de_som)
@@ -97,6 +100,8 @@ Cor = (200,200,200)
 bg_color = pygame.Color('grey12')
 
 
+
+
 Bola  = pygame.Rect(Tela_largura / 2 - 15, Tela_altura / 2 - 15, 30, 30)
 Jogador = pygame.Rect(Tela_largura - 20, Tela_altura / 2 - 70, 10,140)
 Adversario = pygame.Rect(10, Tela_altura / 2 - 70, 10,140)
@@ -106,8 +111,6 @@ Bola_vel_y = 7 * random.choice((1,-1))
 jogador_Vel = 0
 Adversario_vel = 7
 Bola_mex = False 
-
-
 
 
 
@@ -127,8 +130,8 @@ while True:
 					jogador_Vel += 7
 				if event.key == pygame.K_DOWN:
 					jogador_Vel -= 7
-		if Jogador_pontos > 5 or Adversario_pontos > 5:
-			pygame.quit()
+	if Jogador_pontos > 5 or Adversario_pontos > 5:
+		pygame.quit()
 				
 					
 		
