@@ -3,6 +3,8 @@
 import pygame, sys, random
 from pygame import mixer 
 from pygame.locals import *
+from pygame import mixer
+from playsound import playsound
 pygame.init() 
 
 Tempo_pontos = True
@@ -10,14 +12,7 @@ Tempo_pontos = True
 Jogador_pontos = 0 
 Adversario_pontos = 0 
 fonte = pygame.font.SysFont("Free Sans Bold", 32)
-
-
-
 tela_inicio = pygame.image.load('assets/tela1.jpeg')
-
-mixer.init()
-som_bola = mixer.Sound("mixkit-basketball-ball-hard-hit-2093.wav")
-
 
 def Bola_animacao():
 	global Bola_vel_x, Bola_vel_y,Tempo_pontos,Adversario_pontos, Jogador_pontos
@@ -27,20 +22,24 @@ def Bola_animacao():
 
 	if Bola.top <= 0 or Bola.bottom >= Tela_altura:
 		Bola_vel_y *= -1
+		
 	if Bola.left <= 0:
 		Tempo_pontos = pygame.time.get_ticks()
 		Jogador_pontos += 1
+		
 	if Bola.right >= Tela_largura:
 		Tempo_pontos = pygame.time.get_ticks()
 		Adversario_pontos += 1
+		
 
 	if Bola.colliderect(Jogador) and Bola_vel_x > 0:
 		
 		if abs(Bola.right - Jogador.left) < 10:
 			Bola_vel_x *= -1
+			
 		elif abs(Bola.bottom - Jogador.top) < 10 or abs(Bola.top - Jogador.bottom) < 10 :
 			Bola_vel_y *= -1
-			som_bola.play()
+			
 		#play_sound(sons['som1'])	
 
 	if Bola.colliderect(Adversario):
@@ -118,6 +117,9 @@ Bola_mex = False
 
 
 while True:
+
+	playsound('musica1.wav')
+	
 	jogo_start = False 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -162,3 +164,5 @@ while True:
 
 	pygame.display.flip()
 	clock.tick(60)
+
+
