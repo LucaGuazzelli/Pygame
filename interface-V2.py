@@ -1,14 +1,12 @@
-
-
 import pygame, sys, random
 from pygame import mixer 
 from pygame.locals import *
 from pygame import mixer
 from playsound import playsound
-pygame.init() 
+import os
 
+pygame.init()
 Tempo_pontos = True
-
 Jogador_pontos = 0 
 Adversario_pontos = 0 
 fonte = pygame.font.SysFont("Free Sans Bold", 32)
@@ -90,9 +88,13 @@ def bola_start():
 		Bola_vel_y = 7 * random.choice((1,-1))
 		Tempo_pontos = None
 
-pygame.init()
-clock = pygame.time.Clock()
+def menu(tela):
 
+	tela.blit(tela_inicio, (0, 0))
+
+	return None
+
+clock = pygame.time.Clock()
 Tela_largura = 1200
 Tela_altura = 500
 Tela = pygame.display.set_mode((Tela_largura,Tela_altura))
@@ -100,8 +102,6 @@ pygame.display.set_caption('Jogo.Pygame - Luca, PH, Rafa')
 
 Cor = (200,200,200)
 bg_color = pygame.Color('grey12')
-
-
 
 
 Bola  = pygame.Rect(Tela_largura / 2 - 15, Tela_altura / 2 - 15, 30, 30)
@@ -114,17 +114,21 @@ jogador_Vel = 0
 Adversario_vel = 7
 Bola_mex = False 
 
+pygame.init() 
 
+pygame.mixer.pre_init(44100, -16, 1, 512)
+pygame.mixer.init()
+pygame.mixer.music.load("musica1.wav")
+
+menu_inicial = True
 
 while True:
-
-	playsound('musica1.wav')
-	
 	jogo_start = False 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			sys.exit()
+
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
 					jogador_Vel -= 7
@@ -135,10 +139,14 @@ while True:
 					jogador_Vel += 7
 				if event.key == pygame.K_DOWN:
 					jogador_Vel -= 7
+
+
+		pygame.mixer.music.play()
+		pygame.display.update()
 	if Jogador_pontos > 5 or Adversario_pontos > 5:
 		pygame.quit()
 	
-	mixer.quit()
+
 				
 	
 		
